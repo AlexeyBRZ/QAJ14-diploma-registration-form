@@ -1,7 +1,7 @@
 export class Form {
   inputMandatoryFields(
-    email: unknown,
-    password: unknown,
+    email: string,
+    password: string,
   ): {
     isValid: boolean;
     errors: { email?: string; password?: string };
@@ -21,26 +21,26 @@ export class Form {
       errors.password = "Password is mandatory";
     } else if (typeof password !== "string") {
       errors.password = "Password must be a string";
-    } else {
-      const pwd = password;
+     } 
+    else {
 
-      if (pwd.length < 8 || pwd.length > 15) {
+      if (password.length < 8 || password.length > 15) {
         errors.password = "Password must be from 8 to 15 symbols";
       }
 
-      if (!/[A-Z]/.test(pwd)) {
+      if (!/[A-Z]/.test(password)) {
         errors.password = errors.password
           ? errors.password + "; At least one capital letter mandatory"
           : "At least one capital letter mandatory";
       }
 
-      if (!/\d/.test(pwd)) {
+      if (!/\d/.test(password)) {
         errors.password = errors.password
           ? errors.password + "; At least one digit mandatory"
           : "At least one digit mandatory";
       }
 
-      if (!/[!@_$&*?()\-\+]/.test(pwd)) {
+      if (!/[!@_$&*?()\-\+]/.test(password)) {
         errors.password = errors.password
           ? errors.password + "; At least one special symbol mandatory"
           : "At least one special symbol mandatory (!@_$&*()-+)";
